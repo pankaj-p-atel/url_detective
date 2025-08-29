@@ -15,8 +15,7 @@ class URLRequest(BaseModel):
 def home():
     return {"message": "URLDetective API is running"}
 
-@app.post("/predict")
+@app.post("/predict-url")
 def predict(data: URLRequest):
-    # Replace with real feature extraction logic
     prediction = model.predict([[len(data.url)]])
     return {"url": data.url, "prediction": int(prediction[0])}
