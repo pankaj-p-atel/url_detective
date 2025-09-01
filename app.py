@@ -84,18 +84,6 @@ def home():
 
 @app.post("/predict-url")
 def predict(data: URLRequest):
-     # example feature extraction
-    # features = [len(data.url), data.url.count("."), data.url.count("/")]
-    # prediction = model.predict([features])[0]
-    # label = "phishing" if prediction == 1 else "legitimate"
-
-    # return {
-    #     "url": data.url,
-    #     "features_order": ["length", "dot_count", "slash_count"],
-    #     "features": features,
-    #     "prediction": int(prediction),
-    #     "label": label
-    # }
     features = extract_features(data.url)   # ✅ generate 21 features
     prediction = model.predict([features])  # pass correct input
     return {"url": data.url, "prediction": int(prediction[0])}
